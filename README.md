@@ -24,11 +24,11 @@ My expection is all gentles having a good time.
 
 # Table of Contents
 
-1. **[Expectations]**(#expectations)
-2. **[Sorts]**(#sorts)
-3. **[Notes]**(#notes)
-4. **[Slides]**(#slides)
-5. **[Recommandations]**(#recommandations)
+1. [**Expectations**](#expectations)
+2. [**Sorts**](#sorts)
+3. [**Notes**](#notes)
+4. [**Slides**](#slides)
+5. [**Recommandations**](#recommandations)
 
 #### What can you expect to see on this page? <a name="Expectations"></a>
 
