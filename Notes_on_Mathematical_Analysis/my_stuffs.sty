@@ -1,0 +1,128 @@
+%% 文本设定
+\renewcommand{\it}[1]{\textit{#1}}
+\renewcommand{\bf}[1]{\textbf{#1}}
+\renewcommand{\rm}[1]{\textrm{#1}}
+\newcommand{\tit}[1]{\textit{#1}}
+\newcommand{\tbf}[1]{\textrm{\textbf{#1}}}
+\newcommand{\trm}[1]{\textrm{#1}}
+\renewcommand{\cal}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\bb}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\scr}[1]{\ensuremath{\mathscr{#1}}}
+\renewcommand{\mit}[1]{\ensuremath{\mathit{#1}}}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\mrm}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\zero}{\ensuremath{\mathrm{0}}}
+\newcommand{\one}{\ensuremath{\mathrm{1}}}
+\newcommand{\two}{\ensuremath{\mathrm{2}}}
+\newcommand{\three}{\ensuremath{\mathrm{3}}}
+\newcommand{\four}{\ensuremath{\mathrm{4}}}
+
+
+%% 快速设定
+\newcommand{\R}{\mbf R}
+\newcommand{\C}{\mbf C}
+\newcommand{\Q}{\mbf Q}
+\newcommand{\N}{\mbf N}
+\newcommand{\F}{\mbf F}
+\newcommand{\Z}{\mbf Z}
+\newcommand{\T}{\mbf T}
+\renewcommand{\S}{\mbf S}
+\newcommand{\K}{\mbb K}
+\renewcommand{\k}{\mbb k}
+\renewcommand{\H}{\cal H}
+%
+\newcommand{\RR}{\bb{R}}
+\newcommand{\CC}{\bb{C}}
+\newcommand{\NN}{\bb{N}}
+\newcommand{\ZZ}{\bb{Z}}
+\newcommand{\QQ}{\bb{Q}}
+\newcommand{\FF}{\bb{F}}
+\newcommand{\KK}{\bb{K}}
+\newcommand{\kk}{\bb{k}}
+\newcommand{\TT}{\bb{T}}
+\renewcommand{\SS}{\cal{S}}
+\newcommand{\PP}{\mrm{P}}
+%
+\newcommand{\Ob}{\mrm{Ob}}
+\newcommand{\Mor}{\mrm{Mor}}
+\newcommand{\Map}{\mrm{Map}}
+\newcommand{\Hom}{\mrm{Hom}}
+\newcommand{\Ker}{\mrm{Ker}}
+\newcommand{\End}{\mrm{End}}
+\newcommand{\Aut}{\mrm{Aut}}
+\newcommand{\Gal}{\mrm{Gal}}
+\newcommand{\id}{\mrm{id}}
+\newcommand{\ev}{\mrm{ev}}
+\renewcommand{\sp}{\usebox\sban}
+\newcommand{\cosp}{\usebox\cosban}
+\newcommand{\yo}{\text{\mincho よ}}
+%\newcommand{\iff}{\ensuremath{\text{\textrm{iff}}}}
+%
+\newcommand{\On}{\mbf{On}}
+\newcommand{\VV}{\mbf{V}}
+\newcommand{\pt}{\ensuremath{\mrm{pt}}}
+\newcommand{\op}{\ensuremath{\mrm{op}}}
+\newcommand{\ho}{\ensuremath{\mrm{ho}}}
+\newcommand{\Cat}{\ensuremath{\mbf{Cat}}}
+\newcommand{\Set}{\ensuremath{\mbf{Set}}}
+\newcommand{\Top}{\ensuremath{\mbf{Top}}}
+\newcommand{\sSet}{\ensuremath{\mbf{sSet}}}
+\newcommand{\Alg}{\ensuremath{\mbf{Alg}}}
+\newcommand{\coAlg}{\ensuremath{\mbf{coAlg}}}
+\newcommand{\Vect}{\ensuremath{\mbf{Vect}}}
+\newcommand{\Mat}{\ensuremath{\mbf{Mat}}}
+
+%% 数学符号
+\let\emptyset\varnothing
+\let\le\leqslant
+\let\ge\geqslant
+\let\les\lesssim
+
+
+%% 微分算子
+\newcommand{\dd}{\ensuremath{\mathrm{d}}}
+\newcommand{\ddf}{\ensuremath{\mathrm{d}f}}
+\newcommand{\ddg}{\ensuremath{\mathrm{d}g}}
+\newcommand{\ddx}{\ensuremath{\mathrm{d}x}}
+\newcommand{\ddy}{\ensuremath{\mathrm{d}y}}
+\newcommand{\ddt}{\ensuremath{\mathrm{d}t}}
+%
+\newcommand{\pd}{\ensuremath{\partial}}
+\newcommand{\pdf}{\ensuremath{\partial f}}
+\newcommand{\pdg}{\ensuremath{\partial g}}
+\newcommand{\pdx}{\ensuremath{\partial x}}
+\newcommand{\pdy}{\ensuremath{\partial y}}
+
+%% 各类箭头
+%%% 单线
+\newcommand{\rar}{\ensuremath{\rightarrow}}
+\newcommand{\lar}{\ensuremath{\leftarrow}}
+\newcommand{\lrar}{\ensuremath{\leftrightarrow}}
+\newcommand{\xrar}[1]{\ensuremath{\xrightarrow{#1}}}
+\newcommand{\xlar}[1]{\ensuremath{\xleftarrow{#1}}}
+\newcommand{\xlrar}[1]{\ensuremath{\xleftrightarrow{#1}}}
+%%% 二线
+\newcommand{\Rar}{\ensuremath{\Rightarrow}}
+\newcommand{\Lar}{\ensuremath{\Leftarrow}}
+\newcommand{\Lrar}{\ensuremath{\Leftrightarrow}}
+\newcommand{\xRar}[1]{\ensuremath{\xRightarrow{#1}}}
+\newcommand{\xLar}[1]{\ensuremath{\xLeftarrow{#1}}}
+\newcommand{\xLrar}[1]{\ensuremath{\xLeftrightarrow{#1}}}
+%%% 奇异
+\newcommand{\hrar}{\ensuremath{\hookrightarrow}}
+\newcommand{\hlar}{\ensuremath{\hookleftarrow}}
+\newcommand{\thrar}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\thlar}{\ensuremath{\twoheadleftarrow}}
+%%% 标注奇异
+\newcommand{\xhrar}[1]{\ensuremath{\xhookrightarrow{#1}}}
+\newcommand{\xhlar}[1]{\ensuremath{\xhookleftarrow{#1}}}
+\newcommand{\xthrar}[1]{\ensuremath{\xtwoheadrightarrow{#1}}}
+\newcommand{\xthlar}[1]{\ensuremath{\xtwoheadleftarrow{#1}}}
+
+%% 杂项
+\newcommand{\e}{\ensuremath{\mathrm{e}}}
+\newcommand{\setvert}{\ensuremath{\,\vert\,}}
+\newcommand{\st}{\ensuremath{\text{\rm{s.t.}}}}
+\newcommand{\blk}{\ensuremath{n 0.0833em}}
+\newcommand{\cpst}{\ensuremath{\blk\circ\blk}}
+\newcommand{\deq}{\stackrel{\ensuremath{\triangle}}{=}}

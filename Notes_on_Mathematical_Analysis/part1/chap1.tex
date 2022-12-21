@@ -1,0 +1,408 @@
+\chapter{分析浅引：空间的构筑}
+
+\section{基本记号}
+
+学习数学的时候，能提出问题才有结果。设想自己没有对任何事物的感受能力，仅仅能知道\it{有}“\it{这么一些东西}”存在于那里，这时能做到的事不过是将这些东西视为一个\it{收集}中的\it{不同}事物而已。
+
+\begin{definition}
+	
+	一堆\bf{对象}的\bf{收集}$X$，是这一堆东西的整体。
+	
+\end{definition}
+
+\begin{remark}
+	
+	为了定义“收集”，需要引入“集合”：\it{\bf{集合}是具有某种特定性质的对象汇集而成的一个整体, 这些对象称为该集合的\bf{元素}}，但是这与收集的概念在本质上是几乎一样的。形式上，我们对收集中的对象蒙蔽了感官，所以并不能判断其是否有相同\bf{性质}，在集论中有配套的\it{逻辑系}，用这个系统进行性质的具体刻画是必要的。
+	
+\end{remark}
+
+逻辑系统的主要目的是判断一个问题是否\bf{可解}，或称\it{该命题是否为真}。从一个已知命题推出新的命题是\bf{逻辑演绎}的唯一方法，称推导第一个步骤的假设为\bf{公理}，它们是\bf{恒真式}的例子，在任何附加条件下都是正确的。
+
+\begin{definition}
+	
+	一些基础逻辑记号规范：
+	
+	\begin{enumerate}
+		
+		\item \tbf{真值}是定下的两个对象$\top,\bot$或$\zero,\one$，它们在所论收集$\Gamma$内作为\tbf{真}与\tbf{假}，是初始的\rm{恒真式}与\rm{矛盾式}。
+		
+		\item 符号$p,q,r$\it{暂时}作为收集$\Gamma$中的对象，称为\tbf{命题变量}，简称\tbf{变量}。
+		
+		\item 如果$q$是$p$的\tbf{推论}，则记为$p\Rar q$，当$p$为真时$q$必然为真，其它情况则不一定。另外将恒真式记为$\vDash p$，即$p\Rar \one$。
+		
+		\item 对推论进行判断，记为$p\rar q$，如果$p$为真时$q$为假，则$(p\rar q)$为假，其它情况为真。
+		
+		\item 如果$p$与$q$互为推论，亦即$p\Rar q$且$q\Rar p$，那么它们的真值一定相同，记为$p\Lrar q$，称它们\tbf{等价}。同时简单地把真值相同的变量记为$p=q$。
+		
+		\item 将$p\rar \zero$记为$\neg p$，称为$p$的\tbf{否定}，它只在$p$为$\zero$时为真，即它反转$p$的真值，立见$\neg \neg p = p$。
+		
+	\end{enumerate}
+	
+\end{definition}
+
+想要操作逻辑符号，那必须进行两个逻辑词\it{之间}的关系判断，比如“当$p$与$q$都为真时该命题为真”或“当$p$与$q$中任一者为真时该命题为真”。将“该命题”专门提出来，称为\bf{与}、\bf{或}，它们与上述的$\rar, \zero, \one, \neg$放在一起被称为\bf{逻辑符号}。
+
+\begin{definition}[De Morgan律与合/析取]
+	
+	\tbf{合取}记为$p\wedge q = \neg(p\rar \neg q)$，\tbf{析取}则是$p\vee q = \neg p\rar q$，计算得$\neg(p\wedge q) = \neg p \vee \neg q$。
+	
+\end{definition}
+
+能直接看出，若$p$非真，则其为假，称此现象为\bf{排中律}，与$\neg(\neg\neg p) = \neg p$等价。\bf{反证法}是根据排中律设计的一种方法：$p$与$\neg p$中总有一个为假，想证明$p$为真；如果$\neg p\Rar r$，但$r\Rar p$，这导致\bf{悖论}$\neg p\Rar p$，根据基本假设这是谬误的，因此$p$为真。
+
+接下来将直接使用平常人都知道的集合论语言进行描述，所谓的“收集”仅是不声明所选择的“集合论”与“逻辑系”时选择的词汇，在\it{范畴论}中会经常遇到。
+
+\section{自然数}
+
+可以尝试把一个集合中的元素排成序，$P = (P,\leqslant)$，比如集合$\{x,y\}$有两个不同的排序$x\leqslant y$与$y\leqslant x$，而$\{x,y,z\}$有四个，$\{w,x,y,z\}$有八个。总的来看，有$n$个元素的集合将有$2^n$个不同的排序方式，当$n\rar\infty$时，这些方式将会远远多于集合的元素。但是对于一个有限的$n$，总能选择一个使得给定元素$x$比任何其它元素更小的序，称它为\tbf{良序}。
+
+但是没有人喜欢选择。
+
+如果有一种\it{典型}的方式，在一个集合上给出每个元素都可排序且总有最小的元素的序，那么世界会变得简单，\bf{公理化集合论}的目的在本质上就是这样，\it{避免一切悖论，囊括全部情形}。不过直接给出公理是很难受的，就像学习向量空间的时候说“\it{向量空间是一个使得其元素可加减、可倍率且有零的集合}”一样，非常不知所云。
+
+\begin{definition}[定理-命题-推论]
+	
+	所谓\tbf{定理}，记为$\Gamma\vdash p$，是一个有限定范围的恒真式，范围是$\Gamma$。而\tbf{命题}是一个待证明为真的\tbf{公式}，后者指由逻辑符号连接变量构成的整体，如$p\wedge \neg q$就是一个公式。\tbf{合式公式}是有意义的公式，咱$p\rar \neg p$就没有意义。能证明的公式就是合式公式。而\tbf{推论}无非是$p\Rar q$。
+	
+\end{definition}
+
+一般来说省略显然命题的证明，直接称其为定理。虽然在一些意义上它并不显然。
+
+\begin{theorem}[空集]
+	
+	对于任意一个给定的集合$X$，有唯一的\tbf{空集}为$\emptyset := \{x\in X\setvert x\not\in x\}$，并且$\emptyset^\cal{C} = X$。
+	
+\end{theorem}
+
+\begin{definition}[幂集]
+	
+	给定集合$X$，可以生成新的集$P(X) := \{Y\subset X\}$，那么可得$P(\emptyset) = \{\emptyset\}$，$P(P(\emptyset)) = \{\emptyset, \{\emptyset\}\}$。
+	
+\end{definition}
+
+\begin{definition}[Cartesian积]
+	
+	定义\tbf{有序对}$(x,y) := \{x,\{x,y\}\}$，集合$X\times Y := \{(x,y)\setvert x\in X, y\in Y\}$被称为$X$与$Y$的\tbf{Cartesian积}。
+	
+\end{definition}
+
+$X\vee Y=\emptyset$则乘积为空，而且$X\times Y\subset P(P(X\cup Y))$，$Y\times X$同理。比如在$X=\{x\},Y=\{y\}$时，$ P(P(X\cup Y)) \supset P(\{x,y\}) \supset \{x,y,\{x,y\}\} $，立见其无序性。
+
+\begin{theorem}[序数的后继]
+	
+	如果$\alpha\subset P(\alpha)$，那么$P(\alpha) = \alpha \cup \{\alpha\}$，称其为\tbf{序数}，而序数的幂集为其\tbf{后继}。
+	
+\end{theorem}
+
+可见$\emptyset$是最小的序数，所有的序数都被它生成。记$\alpha$的后继为$\alpha^+$。
+
+\begin{proposition}[归纳法]
+	
+	如果命题$p$基于序数$\alpha$，记为$p=p(\alpha)$，同时$\vDash p(\emptyset)$，且对于任意序数$\beta \subsetneq \alpha$有$\vdash p(\beta)$，那么$\vdash p(\alpha)$。
+	
+	\begin{proof}[采纳 J. Schl\"{o}der - Ordinal Arithmetic 中的证明]
+		
+		假设$\neg p(\theta)$是使得该命题为假的最小序数，则$\theta \neq \emptyset$；若$\theta = \gamma^+$，由于$\vdash p(\gamma)$，有$\vdash p(\theta)$，得到悖论。
+		
+	\end{proof}
+	
+\end{proposition}
+
+\begin{theorem}[Peano公理]
+	
+	可以看出$\On := $\tbf{全体序数的收集}满足下列性质：
+	
+	\begin{itemize}
+		
+		\item $ \emptyset \in \On $.
+		
+		\item $ \alpha \in \On \Rar \alpha^+ \in \On $.
+		
+		\item $ ( \alpha = \beta ) \Lrar ( \alpha^+ = \beta^+ ) $.
+		
+		\item $ \forall \alpha \in \On, \alpha^+ \neq \emptyset $.
+		
+		\item $ \vdash p(\emptyset) \wedge ( \forall \beta < \alpha, \; \vdash p(\beta) ) \Rar \; \vdash p(\alpha) $.
+		
+	\end{itemize}
+
+\end{theorem}
+
+从空集生成的序数类记为$\NN$，称之为\bf{自然数}。它包含了全部$P(\emptyset),P(P(\emptyset)),P(P(P(\emptyset))),\ldots$，直接记为$1,2,3,\ldots$，但它本身是否是集合不能从上述运算中导出，为了保持数学上的严谨性，我们规定\bf{自然数的收集是个集合}（\it{无穷公理}的一种表达）。
+
+序数类不会是集合，因为每个序数都有后继，自然数也有后继，假设序数类包含了全部序数那它本身也是一个序数。这很显然能导出悖论：\bf{Russell悖论}的一种形式，另一种比较熟知的是\bf{全体集合不构成集合}，因为$\On$在全体集合的收集中，所以它不可能是集合。
+
+更多公理集合论、自然数构造与无穷序数的信息可以查询附录。
+
+
+\section{数}
+
+\begin{center}
+	
+	\it{实数是一个对加减乘除封闭、任何点之间都没有空隙的空间。}
+	
+\end{center}
+
+%我们这样定义实数：
+
+\begin{definition}
+	
+	实数集$\RR$满足以下条件：
+	
+	\begin{itemize}
+		
+		\item 有操作$+:(x,y)\rar x+y\in\RR$，$\times:(x,y)\rar x\cdot y\in\RR$，称为\tbf{加法}与\tbf{乘法}。
+		
+		\item 有序关系$(\RR,\leqslant)$，使其任意元素皆可排序，且任意非空子集总有最小元。
+		
+	\end{itemize}
+	
+	称$(\RR,+,\times,\leqslant)$为\tbf{实数系}，它满足下述公理：$x,y,z$是$\RR$中的任意元素，
+	
+	\begin{enumerate}[F.1]
+		
+		\item $x+(y+z)=(x+y)+z,\; x+y=y+x,\; 0+x=x+0=x,\; x+(-x)=0$.
+		
+		\item $x\cdot(y\cdot z)=(x\cdot y)\cdot z,\; x\cdot y=y\cdot x,\; 1\cdot x=x\cdot 1=x,\; x\cdot (x^{-1})=1$.
+		
+		\item $x\cdot(y+z)=x\cdot y+x\cdot z$.
+		
+	\end{enumerate}
+	
+	\begin{enumerate}[O.1]
+		
+		\item $x\leqslant y\leqslant z \Rar x\leqslant z$.
+		
+		\item $x\leqslant y\leqslant x \Rar x = y$.
+		
+		\item $x\leqslant y \Rar x+z\leqslant y+z$.
+		
+		\item $0\leqslant x,y \Rar 0\leqslant xy$.
+		
+		\item $0<x \Rar \exists n,\, y<n\cdot x$.
+		
+		\item $P\subset \RR \Rar \exists! \sup(P)\in\RR$.
+		
+	\end{enumerate}
+	
+\end{definition}
+
+\begin{definition}[确界，开闭性]
+	
+	称$x$为有序集$P\subset P'$的\tbf{上界}，若$P\leqslant x$，即$\forall y\in P,\, y\leqslant x$。而\tbf{上确界}$\sup(P)$是全体上界中最小的那个，如果$P=P'$，则上确界就是$P$的\tbf{极大元}：没有比它更大的数。
+	
+	反过来有下确界。%如果$x,y$都是$P$的上/下确界，那它们一定相等。
+	称不包含上与下确界的集合为\tbf{开集}，反之是\tbf{闭集}。
+	
+\end{definition}
+
+\begin{remark}
+	
+	指出几点重要性质：以上定义的各种概念都是唯一的，比如
+	
+	\begin{enumerate}
+		
+		\item $x+x'=x+y\Rar (-x)+x+x'=(-x)+x+y \Rar x'=y$，乘法情形相似；所以单位元都是唯一的。
+		
+		\item $0\leqslant x \Rar -x\leqslant x+(-x)=0$.
+		
+		\item $0\cdot x = (0+0)\cdot x = 0\cdot x + 0\cdot x = 0$.
+		
+		\item 上确界显然唯一。
+		
+		\item $0\leqslant x\leqslant 1\Rar 0\leqslant x\cdot x^{-1} = 1 \leqslant x^{-1}$.
+		
+	\end{enumerate}
+	
+\end{remark}
+
+现在能够操作的数是$0,1$，它们与上述条件将能够非常有效地造出整个实数系：
+
+\begin{definition}[自然数]
+	
+	只考虑加法与乘法交换结合性，可得$1^+ = 1+1 \in \NN$，$n^+ = n+1 \in \NN$。$\NN$也对数乘封闭，因为$n\times m=m+m+\ldots+m\in\NN$，写$(\NN,+,\times,1,0)$为自然数系。
+	
+\end{definition}
+
+\begin{definition}[整数]
+	
+	在自然数的基础上考虑加法逆元，存在$1+(-1)=0,\, -1\in\ZZ$，对数乘的封闭性直接得到$-n=(-1)n\in\ZZ$，类似地，写整数为$(\ZZ,+,\times,-1,1,0)$。
+	
+\end{definition}
+
+\begin{definition}[有理数]
+	
+	在整数中添入乘法逆元，由乘法封闭性得到$m\cdot n^{-1}\in\QQ$，记为$(\QQ,+,-,\cdot,/)$。
+	
+\end{definition}
+
+\begin{proposition}[有理数的非完备性]
+	
+	定义$\QQ$中的\tbf{开区间}为$(a,b):=\{x\in\QQ\setvert a<x<b\}$，而\tbf{闭区间}显然是$[a,b]:=\{x\in\QQ\setvert a\leqslant x\leqslant b\}$。
+	
+	考虑半开半闭区间$\{[-a,x)\subset\QQ\setvert x^2<2\}$，它在\QQ 中没有上确界。
+	
+	\begin{proof}[陈天权 《数学分析讲义》 第一册 pp.43]
+		
+		取上确界$p/q\geqslant 1$，欲知$(p/q)^2\neq 2$，即$p^2=2q^2$，因此$p$是偶数。假设$p,q$互素。取$p=2r$，得到$2r=q^2$，即$q$也是偶数，那么$p/q$可以分解，与假设矛盾。
+		
+	\end{proof}
+	
+\end{proposition}
+
+有理数与实数只差了一条公理：\tbf{完备性公理}，即所谓\trm{确界原理}。
+
+\begin{definition}[实数]
+	
+	根据确界原理，我们可以形式地定义实数：$\RR = \{\sup(U)\setvert U\subset \QQ\}$。
+	
+\end{definition}
+
+所以实数是一个没有洞的空间，因为所有的洞都（形式地）被填上了。但是这样的公理对于研究来说只有证明上的作用，实际的构造性结果还需要更丰富的结构。
+
+\begin{definition}[Dedekind分割]
+	
+	令$X\subset\QQ$，$X'=\QQ\setminus X$，并且
+	
+	\begin{enumerate}
+		
+		\item $X,X'\neq\emptyset$.
+		
+		\item $\forall x\in X,\, \forall x'\in X',\, x<x'$，简写为$X<X'$.
+		
+		\item $\nexists\max(X)$.
+		
+	\end{enumerate}
+	
+	则称$X\cup X'$为一个\tbf{分割}。
+	
+\end{definition}
+
+\begin{example}
+	
+	考虑对应于$\sqrt{2}$的分割：$X=\{x\in\QQ_{\geqslant 0}\setvert x^2<2\}\cup \QQ_{\leqslant 0}$，那么它等价于$X=(-\infty,\sqrt{2})$，$X'=(\sqrt{2},\infty)$，显然，它定义了点$\sqrt{2}$。
+	
+\end{example}
+
+取集合上的序关系$X\leqslant Y \Lrar X\subset Y$，据定义，它是一个良序（请写出证明）。我们希望能直接从分割的定义导出确界原理。
+
+\begin{proposition}[确界原理]
+	
+	取$\cal{R}$为全体分割的集合，$\cal{X}\subset\cal{R}$，并且有$M\in\cal{R}$使得$\forall X\in\cal{X},\, X\leqslant M$，那么
+	
+	$$ \sup(\cal{X})=\bigcup_{X\in\cal{X}}X. $$
+	
+	\begin{proof}[于品 - 《数学分析讲义》 pp.31]
+		
+		第一步：证明$M_0 := \sup(\cal{X})$是个分割。
+		
+		\begin{enumerate}
+			
+			\item $M_0 \neq \emptyset \wedge M_0' \neq \emptyset$，因为$\emptyset \notin \cal{R}$。
+			
+			\item $\forall x_1\in M_0,\, x_2>x_1\Rar x_2\in M_0$：条件使得$\exists X\in \cal{X},\, x_1\in X$，即$x_1<x_2\Rar x_2\in X\subset M_0$。
+			
+			\item $\nexists\max(M_0)$。假设$x_0=\max(M_0)$，则存在$X\in\cal{X}$，$x_0=\max(X)$，与定义矛盾。
+			
+		\end{enumerate}
+		
+		第二步：说明$\sup(\cal{X})$的确是其上确界。
+		
+		定义$\cal{M}:=\{M\in\cal{R}\setvert \forall X\in\cal{X},\, X\leqslant M\}$为$\cal{X}$的上界族，欲证$M_0\in\cal{M}\wedge\forall M\in\cal{M},\, M_0\leqslant M$。
+		
+		第一步已经说明$M_0\in\cal{M}$。而作为上界，$\forall X\in\cal{X},\, X\subset M$，故$\bigcup X=M_0\subset M$，得证。
+		
+	\end{proof}
+	
+\end{proposition}
+
+\begin{proposition}
+	
+	为了说明这样构造的确界原理确实与前述的完备性公理等价，我们需要证明$\cal{R}=\RR$。
+	
+	\begin{proof}
+		
+		需要证明的无非是$\cal{R}$上有加减乘除，有序，有Archimedes性质，且诸运算互相匹配。
+		
+		简单说明加法：$X+Y := \{x+y\in\QQ\setvert x\in X,\, y\in Y\}$，逐点计算说明加法交换结合有逆，称$(\cal{R},+)$为一个\tbf{交换群}，或称\tbf{Abel群}。乘法有相似定义，逐点计算表明$(\cal{R},\cdot)$是个交换群，同时它们分配。
+		
+		例：$\overline{0} := \{z\in\QQ\setvert \forall z<0\}$，$\overline{0}+X = \{z+x\in\QQ\setvert \forall z<0,\, x\in X\}$，需要说明$\overline{0}+X=X$。
+		\begin{enumerate}
+			\item 由于$z+x<x$，$\overline{0}+X\subset X$。
+			
+			\item 由于$x\in X\Rar \exists \overline{x}\in X,\, x<\overline{x}$，令$z=\overline{x}-x$，则$0<z \Rar x=x'-z\in\overline{0}+X$，所以$X\subset\overline{0}+X$。
+		\end{enumerate}
+		
+		说明序与加法互相匹配在技术上是挺复杂的，我们引入下述引理：
+		
+		\begin{lemma}\label{lemma:1.1}
+			
+			对于分割$X\cup X'$，$\forall n\in\NN$，$\exists x'\in X',\, \exists x\in X$ 使得 $\displaystyle0<x'-x<\frac{1}{n}$.
+			
+			\begin{proof}[于品 - 《数学分析讲义》 pp.33]
+				
+				取$x_0\in X,\, x_0'\in X'$，由归纳法，假设存在$x_k,x_k'$，令$y=\frac{1}{2}(x_k+x_k')$，如果$y\in X$则令$(x_{k+1},x_{k+1}')=(y,x_k')$，反之则$(x_{k+1},x_{k+1}')=(x_k,y)$，其中$k\geqslant 0$。那么
+				
+				$$ x_k'-x_k = \frac{1}{2}(x_{k-1}'-x_{k-1}) = \ldots = \frac{1}{2^k}(x_0'-x_0). $$
+				
+				显然$x_k'-x_k<x_{k-1}'-x_{k-1}$，由Archimedes性质，任选$n$有$\displaystyle\frac{1}{n}>\frac{1}{2^{k_0}}(x_0'-x_0)$。得证。
+				
+			\end{proof}
+			
+		\end{lemma}
+		
+		首先，$X<Y\Rar X+Z\leqslant Y+Z$，欲知$X+Z\neq X+Z$。取$y,\overline{y}\in Y-X$如上，使$\frac{1}{n}<y-\overline{y}$，另取$\overline{z}-z<\frac{1}{n}$。如果$y+z\in X+Z$，则有$y+z=x+z'$，但$x<y$为定义，那么$z'<z$，且$x<\overline{y}$与$z'<\overline{z}$。得到
+		
+		\begin{align*}
+			x<(\overline{y}-y)+y, & \\
+			z'<(\overline{z}-z)+z & < \frac{1}{n}+z < (\overline{y}-y)+z
+		\end{align*}
+		
+		相加，得到$x+z'<y+z$，与上式矛盾。
+		
+		余下的都可以按照相似手段得到结果，请\tbf{读者自证}。
+		
+	\end{proof}
+	
+\end{proposition}
+
+所以有理数上的戴德金分割与实数是等价的，还有几种从不同角度切入的实数定义，它们各有特色，在数学分析中其作用也时常有所体现。在初步课程中按照一种循序渐进的方式逐步介绍各种实数定义，因为最基本的例子都需要使用它们。
+
+
+\section{点列极限}
+
+例如在引理\ref{lemma:1.1}中，用于证明的\it{极限思想}说明每一个数都是逼近过程的“最终”结果。在一个数系中，用\bf{列}逼近希望被导出的数是非常重要的技术手段，它与戴德金分割的思想有许多相似之处，之后会见到的闭区间套、有限覆盖、Stone-Weierstrass逼近定理之流与极限思想在某些层面上都是等效的。
+
+
+\section{极限的计算}
+
+
+
+
+\section{线性空间}
+
+
+
+
+\section{函数极限}
+
+
+
+
+\section{度量空间与平移}
+
+
+
+
+\section{线性映射与算子}
+
+
+
+
+\section{求和、连续、收敛性判别}
+
+
+
+
+
+

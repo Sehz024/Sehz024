@@ -1,0 +1,69 @@
+\documentclass[lang=cn,10pt]{elegantbook}
+
+\title{数学分析}
+\subtitle{Elegant\LaTeX{} 经典之作}
+
+\author{Seihitsu Zankyou}
+\institute{Elegant\LaTeX{} Program}
+\date{\today}
+\version{pre-1}
+%\bioinfo{自定义}{信息}
+
+\extrainfo{不要以为抹消过去，重新来过，即可发生什么改变。—— 比企谷八幡}
+
+\setcounter{tocdepth}{3}
+
+\logo{logo-blue.png}
+\cover{cover.png}
+
+% 本文档命令
+\usepackage{array,my_stuffs,mleftright,epigraph}
+%\usepackage[bb=stix]{mathalpha}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+\newcommand{\cmt}[1]{}
+
+% 修改标题页的橙色带
+% \definecolor{customcolor}{RGB}{32,178,170}
+% \colorlet{coverlinecolor}{customcolor}
+
+\begin{document}
+
+\maketitle
+\frontmatter
+
+\tableofcontents
+
+\mainmatter
+
+% 第一部分
+\part{重提旧事}\label{part:introduction}
+	\parttoc
+	\include{part1/chap0}
+	\include{part1/chap1}
+	\include{part1/chap2}
+	\include{part1/chap3}
+	\include{part1/chap4}
+
+% 第二部分
+%\part{开阔视野}\label{part:openmind}
+%	\parttoc
+	\include{part2/chap1}
+	\include{part2/chap2}
+	\include{part2/chap3}
+	\include{part2/chap4}
+	
+% 第三部分
+%\part{幕后故事}\label{part:behindscenes}
+%	\parttoc
+	\include{part3/chap1}
+	\include{part3/chap2}
+	\include{part3/chap3}
+	\include{part3/chap4}
+
+%\part{附录}\label{part:appendix}
+%	\parttoc
+	\appendix
+
+\backmatter
+
+\end{document}
